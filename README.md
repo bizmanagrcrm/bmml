@@ -31,3 +31,5 @@ This function is used to redirect the user to a specific page, using the url.
 
 Example:
 ```<button ng-click="goToPageByUrl('/home')">Go to home</button>```
+
+Note, you can use {{}} to bind the url to a variable.
