@@ -19,4 +19,4 @@ Almost any HTML document (that is valid HTML) is a valid bmml document. The only
 - [BMML Elements](https://github.com/bizmanagrcrm/bmml/blob/main/elements/README.md)
 - [BMML Links](https://github.com/bizmanagrcrm/bmml/blob/main/urls/README.md)
 - [BMML Functions](https://github.com/bizmanagrcrm/bmml/blob/main/functions/README.md)
-- [BMML Variables]
+- [BMML Variables](https://github.com/bizmanagrcrm/bmml/blob/main/variables/README.md)
