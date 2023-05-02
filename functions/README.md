@@ -10,7 +10,7 @@ Example:
 Note, you can use {{}} to bind the url to a variable.
 
 
-### `goToExternalUrl(url, newTab)`
+### `goToExternalUrl(url, [newTab])`
 
 The first argument is the url to redirect to. The second argument is a boolean value that indicates if the url should be opened in a new tab. (default: false)
 
@@ -20,3 +20,10 @@ Example:
 ```<button ng-click="goToExternalUrl('https://www.twitter.com/{{profile}}')">Go to twitter profile</button>```
 
 Note, you can use {{}} to bind the url to a variable.
+
+
+### `getFormattedDate(format, [date])`
+
+The first argument is the format of the date. For format options, see [here](https://docs.angularjs.org/api/ng/filter/date).
+
+ The second argument is the date to format. (default: current date)
