@@ -8,7 +8,6 @@ Currently we support the it with conditional rendering at the form setup.
 
 The syntax is based on the following:
 
-- {{}} - a variable should be wrapped with double curly brackets
 - '' - a string should be wrapped with single quotes
 - `()` - a full condition or condition set should be wrapped with parenthesis
 - `AND` - used to define AND conditions
