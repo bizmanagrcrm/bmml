@@ -30,12 +30,16 @@ To create a url that will open the send-email popup, use the following syntax:
 The following query values are supported:
 - from - email address of the sender (optional - default: current user/employee email)
 - to - email address of the recipient
+- cc - email address of the cc recipient (optional)
+- bcc - email address of the bcc recipient (optional)
 - subject - email subject
 - message - email message
 - title - title of the popup (default: Send Email)
 - template_id - id of the email template to use (optional)
 - log_table - table name to relate the log to (optional)
 - log_id - id of the record to relate the log to (optional)
+- model_name - the name of the model (view) that should be used for parsing the template
+- model_id - the id of the model (view) that should be used for parsing the template
 
 
 ## Form
