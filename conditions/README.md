@@ -22,6 +22,7 @@ Rules:
 * double spaces are ignored.
 * a new line is considered as a space.
 * An empty string is a valid condition, and it eveluates to true.
+* We support strings (single quotes), numbers, booleans (true/false);
 
 
 Example:
@@ -29,6 +30,18 @@ Example:
 ``(field1 IS_EQUALS 'value1')``
 
 This means that the value of field1 is equal to 'value1'.
+
+
+``(field1 IS_EQUALS true)``
+This means that the value of field1 is equal to true.
+
+``(field1 IS_EQUALS false)``
+This means that the value of field1 is equal to false.
+
+``(field1 IS_EQUALS 1)``
+This means that the value of field1 is equal to 1.
+
+``(field1 IS_EQUALS 'value1') AND (field2 IS_EQUALS 'value2')``
 
 ``(field1 IS_EQUALS 'value1') AND (field2 IS_NOT_EQUALS 'value2')``
 
