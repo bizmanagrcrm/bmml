@@ -14,6 +14,8 @@ The syntax is based on the following:
 - `OR` - used to define OR conditions
 - `IS_EQUALS` - used to define equality (case insensitive and ignores sorrounding spaces)
 - `IS_NOT_EQUALS` - used to define inequality (case insensitive and ignores sorrounding spaces)
+- `BEGINS_WITH` - used to define that the value begins with the given string (case insensitive and ignores sorrounding spaces)
+- `ENDS_WITH` - used to define that the value ends with the given string (case insensitive and ignores sorrounding spaces)
 
 Rules:
 * variables are available based on context (in a form, all the fields are available)
