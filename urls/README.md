@@ -40,7 +40,8 @@ The following query values are supported:
 - log_id - id of the record to relate the log to (optional)
 - model_name - the name of the model (view) that should be used for parsing the template
 - model_id - the id of the model (view) that should be used for parsing the template
-
+- auto_send - if true, the email will be sent automatically once all required fields are filled (optional - default: false)
+- on_sent_go_to - url to redirect to after the email is sent (optional) the url is going to be parsed for variables with the email response (more details required) and the rest of the params of the original url. for example {{params.log_id}} is going to be replaced with the log_id.
 
 ## Form
 
