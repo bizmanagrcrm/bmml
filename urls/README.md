@@ -49,7 +49,7 @@ To open a form to create a new record, use the following syntax:
 ```/#/add/{{InternalViewName}}```
 
 To open a form to edit an existing record, use the following syntax:
-```/#/edit/{{InternalViewName}}?id={{recordId}}```
+```/#/update/{{InternalViewName}}?id={{recordId}}```
 
 The following query values are supported:
 
