@@ -11,7 +11,7 @@ This element is used to embed a data source in the page. The data source is iden
 
 - `source-url` - the url of the data source - if this is specified, the data source will be loaded from the url.
 - `type` - the type of the data source - The following types are currently supported
-    - `dashboard` - a dashboard data source
+    - `dashboard` - a dashboard data source, (with this type, you must specify the `src-name` and `src-id` attributes. src-name is for the dashboard name and src-id is for the record id of the dashboard)
 
 - `src-name` - the internal name of the data source.
 - `src-id` - the id of the data source.
