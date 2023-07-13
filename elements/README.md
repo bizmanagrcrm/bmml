@@ -23,3 +23,34 @@ Of course, you can use variables in the attributes, for example:
 ```<bmml-data-src type="dashboard" src-name="{{$urlParams.name}}" src-id="{{$urlParams.id}}"></bmml-data-src>```
 
 This example will load the data source based on the url parameters.
+
+The variables that can be used in the children of this element are:
+
+#### `$data` variable (with type `dashboard``)
+This variable contains the data of the data source. It is an object with the following properties:
+    `data` - the data of the data source (this is an object with the fields of the data source)
+    `display_name` - the display name of the data source
+    `...` - other properties
+
+#### `$error` variable (boolean)
+This variable is true if there was an error loading the data source.
+
+#### `$errorMessage` variable (string)
+This variable contains the error message if there was an error loading the data source.
+
+#### `$loading` variable (boolean)
+This variable is true if the data source is still loading.
+
+#### Example
+    ```<bmml-data-src type="dashboard" src-name="{{$urlParams.name}}" src-id="{{$urlParams.id}}">
+        <div ng-if="!$loading">
+            <div>{{$data.display_name}}</div>
+            <div>{{$data.data.name}}</div>
+        </div>
+        <div ng-if="$loading">
+            Loading...
+        </div>
+        <div ng-if="$error">
+            {{$errorMessage}}
+        </div>
+    </bmml-data-src>``` 
