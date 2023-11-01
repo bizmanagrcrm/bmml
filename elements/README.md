@@ -6,6 +6,20 @@ This element is used to embed a report in the page. The report is identified by 
 example:
 ```<bmml-report id="1"></bmml-report>```
 
+
+### `<bmml-form>`
+This element is used to embed a form in the page. The form is the view name and the form name.
+
+example:
+```<bmml-form table-name="customers" form-name="default"></bmml-form>```
+
+- `table-name` - the name of the table (view) of the form
+- `form-name` - the name of the form (optional - default: "default")
+- `id` - the id of the record to edit (optional - default: new record)
+- `title` - title of the popup (default: Add/Edit {{ViewName}})
+
+
+
 ### `<bmml-data-src>`
 This element is used to embed a data source in the page. The data source is identified by the following attributes:
 
