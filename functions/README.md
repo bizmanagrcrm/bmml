@@ -27,3 +27,8 @@ Note, you can use {{}} to bind the url to a variable.
 The first argument is the format of the date. For format options, see [here](https://docs.angularjs.org/api/ng/filter/date).
 
  The second argument is the date to format. (default: current date)
+
+
+ ### `isArray(value)`
+
+ This is the angular isArray function. see [here](https://docs.angularjs.org/api/ng/function/angular.isArray)
