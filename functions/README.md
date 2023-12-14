@@ -38,3 +38,9 @@ If the action is a custom action, the data will be available in the action code 
 ### `isArray(value)`
 
  This is the angular isArray function. see [here](https://docs.angularjs.org/api/ng/function/angular.isArray)
+
+
+### `closeModal(data)`
+
+This function is used to close a modal. The first argument is the data to send back to the parent controller. (default: null)
+Note, this function is only available in modals.
