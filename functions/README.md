@@ -34,6 +34,7 @@ The first argument is the internal name of the table that the action is attached
 The second argument is the internal name of the action to execute.
 The third argument is the data to send to the action. For system actions, this is usually the record object. For custom actions, this is any data you want to send to the action.
 If the action is a custom action, the data will be available in the action code in the `record` variable.
+There is also a `scope` variable available in the action code. This variable contains the scope of the view that the action was triggered from.
 
 ### `isArray(value)`
 
