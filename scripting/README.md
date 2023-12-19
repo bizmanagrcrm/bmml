@@ -16,6 +16,9 @@ An action is always attached to a bizmznage view, and one or multiple records.
 ### Record Object
 A variable named `record` is available in the action code. This variable contains the data of the record that triggered the action. (it could be the row that was selected, or the form data that was submitted)
 
+### Scope Object
+A variable named `scope` is available in the action code. This variable contains the scope of the view that the action was triggered from.
+
 ### $http
 the `$http` service is available in the action code. You can use it to send requests to the server.
 see angularjs documentation for more information. https://docs.angularjs.org/api/ng/service/$http
