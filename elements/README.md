@@ -7,6 +7,7 @@ example:
 ```<bmml-report id="1"></bmml-report>```
 Supported attributes:
 - `id` - the id of the report to embed
+- `auto-execute` - if this attribute is set to true, the report will be executed automatically when the page is loaded. (default: false) - the system will attempt to load the report whenever there is a change in the report parameters.
 - ... all report parameters names could be used as attributes. For example, if the report has a parameter named `name`, you can use the `name` attribute to set the value of the parameter. (Note, you can use variables in the attributes, for example: `name="{{$urlParams.name}}"`)
 
 
