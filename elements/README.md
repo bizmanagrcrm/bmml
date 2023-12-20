@@ -5,6 +5,9 @@
 This element is used to embed a report in the page. The report is identified by its id.
 example:
 ```<bmml-report id="1"></bmml-report>```
+Supported attributes:
+- `id` - the id of the report to embed
+- ... all report parameters names could be used as attributes. For example, if the report has a parameter named `name`, you can use the `name` attribute to set the value of the parameter. (Note, you can use variables in the attributes, for example: `name="{{$urlParams.name}}"`)
 
 
 ### `<bmml-form>`
