@@ -61,3 +61,4 @@ The following query values are supported:
 - pre_data_{{fieldName}} - this is equivalent to pre_data but for the field {{fieldName}} (optional)
 - initial_{{fieldName}} - this is equivalent to initial but for the field {{fieldName}} (optional)
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
+- form_name - the name of the form to use (optional - default: default)
