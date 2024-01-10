@@ -37,7 +37,9 @@ This element is used to embed a data source in the page. The data source is iden
 - `src-name` - the internal name of the data source.
 - `src-id` - the id of the data source.
 
-- `${section-key}_load` - for bmml data src-type='dashboard' - this attribute is used to specify the section key of the dashboard to load all data (and not work with lazy load). For example, if you have a dashboard with the following sections: `customers`, `orders`, `products`, you can use the following attributes to load the dashboard: `customers_load="load"`, `orders_load="load"`, `products_load="load"`.
+- `load-sections` - for type=dashboard, this attribute specifies a list of sections to load. The sections are separated by commas. For example: `load-sections="section1,section2,section3"`
+
+- `sections-as-object` for type=dashboard, if set as true, the sections will be loaded as an object.
 
 An example of a data source element:
 ```<bmml-data-src type="dashboard" src-name="customers" src-id="1"></bmml-data-src>```
