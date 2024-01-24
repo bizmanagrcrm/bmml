@@ -52,6 +52,9 @@ To open a form to create a new record, use the following syntax:
 To open a form to edit an existing record, use the following syntax:
 ```/#/update/{{InternalViewName}}?id={{recordId}}```
 
+To open a form to duplicate an existing record, use the following syntax:
+```/#/duplicate/{{InternalViewName}}?id={{recordId}}```
+
 The following query values are supported:
 
 - id - id of the record to edit (optional - default: new record)
@@ -62,3 +65,4 @@ The following query values are supported:
 - initial_{{fieldName}} - this is equivalent to initial but for the field {{fieldName}} (optional)
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 - form_name - the name of the form to use (optional - default: default)
+- active_tab - the index of the active tab, starting from 1 (optional - default: 1)
