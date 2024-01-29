@@ -27,3 +27,15 @@ see angularjs documentation for more information. https://docs.angularjs.org/api
 the `$q` service is available in the action code. You can use it to create promises.
 see angularjs documentation for more information. https://docs.angularjs.org/api/ng/service/$q
 
+
+### $location
+the `$location` service is available in the action code. You can use it to change the url of the page.
+
+
+### Modal
+The `Modal` service is available in the action code. You can use it to open a modal window.
+
+
+### notify
+The `notify` service is available in the action code. You can use it to show a notification message.
+
