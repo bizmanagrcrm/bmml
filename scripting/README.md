@@ -39,3 +39,5 @@ The `Modal` service is available in the action code. You can use it to open a mo
 ### notify
 The `notify` service is available in the action code. You can use it to show a notification message.
 
+see more details in the [documentation](https://github.com/cgross/angular-notify?tab=readme-ov-file#notifystringobject).
+

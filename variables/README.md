@@ -17,3 +17,12 @@ This is an object that contains the url parameters. For example, if the url is `
     "code": "abc"
 }
 ```
+
+
+### {{$now}}
+This is a date object that contains the current date and time.
+
+Can be used to format the date in the following way:
+```javascript
+{{$now | date: 'yyyy-MM-dd HH:mm:ss'}}
+```
