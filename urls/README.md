@@ -66,3 +66,6 @@ The following query values are supported:
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 - form_name - the name of the form to use (optional - default: default)
 - active_tab - the index of the active tab, starting from 1 (optional - default: 1)
+
+
+To read more about the form url, please visit the [BMML Forms](https://github.com/bizmanagrcrm/bmml/blob/main/forms/README.md)
