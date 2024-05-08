@@ -22,6 +22,10 @@ example:
 
 - `table-name` - the name of the table (view) of the form
 - `form-name` - the name of the form (optional - default: "default")
+- `action` - the action of the form (required) - the following actions are supported:
+    - `add` - add a new record
+    - `update` - update a record
+    - `duplicate` - duplicate a record
 - `id` - the id of the record to edit (optional - default: new record)
 - `title` - title of the popup (default: Add/Edit {{ViewName}})
 
