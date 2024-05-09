@@ -55,3 +55,20 @@ Please note that `initial` will prefill the form with the values, but it will no
 
 If you use that with an update or duplicate form, the fields will be prefilled with the new values, you will not see the current values in the form, you will see the new values defined in the initial parameter.
 
+
+
+## Custom HTML In Forms
+
+You can add custom HTML to the form via the admin portal. The custom HTML will be displayed in the form at the specified location in the form layout.
+
+In the html you can also use variables, for example:
+```html
+<div>
+    <h1>MY CUSTOM HTML</h1>
+    <p>{{record.name}}</p>
+    <input type="text" ng-model="record.custom_field">
+</div>
+```
+
+The `record` variable is the record object that is being edited or created in the form.
+
