@@ -5,7 +5,8 @@ BizmanageCRM allows you to write custom server-side scripts that can be executed
 Currently, you can write custom server-side scripts for the following events:
 - HTTP Request:
     the script will be executed when an HTTP request is received by the server at the specified endpoint:
-        /scripts/run/{{scriptName}}
+        /scripts/run/{{scriptName}} - for authenticated requests
+        /public/script/{{scriptName}}/{{token}} - for public requests
 - Scheduled Task:
     the script will be executed at the specified time interval.
 
