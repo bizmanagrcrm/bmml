@@ -1,4 +1,4 @@
-# BizmanageCRM Custom Scripts for actions
+# BizmanageCRM Custom Scripts for client-side actions
 
 ## Introduction
 
