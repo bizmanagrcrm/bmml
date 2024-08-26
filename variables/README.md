@@ -28,7 +28,7 @@ Can be used to format the date in the following way:
 {{$now | date: 'yyyy-MM-dd HH:mm:ss'}}
 ```
 
-### {{$toDate}}
+### {{$toDate()}}
 This is a function that can be used to convert a string to a date object. The function has the following signature:
 ```javascript
 {{$toDate('2020-01-01 12:00:00') | date: 'yyyy-MM-dd HH:mm:ss'}}
@@ -38,3 +38,8 @@ Example:
 ```javascript
 {{$toDate('2020-01-01 12:00:00') - $now}}
 ```
+
+### {{moment()}}
+This gives you access to the entire moment.js library.
+
+See the documentation at https://momentjs.com/
