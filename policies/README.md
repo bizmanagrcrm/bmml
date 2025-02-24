@@ -6,13 +6,13 @@ The Policies System controls user access within our platform. Each user is assig
 
 ## Navigating to the Policies Manager
 
-To create or edit policies, navigate to:
+To create or edit policies (some actions require **root** permission), navigate to:
 
 📍 **`{YOUR_BZMNG_BASE_URL}/admin#/permission-policies`**
 
 ## Assigning a Policy to a User
 
-To attach a policy to a user (requires admin permission):
+To attach a policy to a user:
 
 1. Go to **`{YOUR_BZMNG_BASE_URL}/admin#/employees`**.
 2. Right-click on the user you want to modify.
