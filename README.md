@@ -21,4 +21,5 @@ Almost any HTML document (that is valid HTML) is a valid bmml document. The only
 - [BMML Functions](https://github.com/bizmanagrcrm/bmml/blob/main/functions/README.md)
 - [BMML Variables](https://github.com/bizmanagrcrm/bmml/blob/main/variables/README.md)
 - [BMML Conditions](https://github.com/bizmanagrcrm/bmml/blob/main/conditions/README.md)
+- [Filters] (https://github.com/bizmanagrcrm/bmml/blob/main/filters/README.md)
 - [Server Side Scripts](https://github.com/bizmanagrcrm/bmml/blob/main/server-side-scripts/README.md)
