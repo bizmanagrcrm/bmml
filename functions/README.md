@@ -1,8 +1,9 @@
 # BMML Functions
 
-### `goToPageByUrl(pageUrl)`
+### `(pageUrl, [paramsObj])`
 This function is used to redirect the user to a specific page, using the url.
 (Note, this is internal routing, not a full page reload)
+`paramsObj` is an optional argument of an object to be passed as parameters to the url
 
 Example:
 ```<button ng-click="goToPageByUrl('/home')">Go to home</button>```
