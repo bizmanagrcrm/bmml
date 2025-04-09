@@ -52,6 +52,10 @@ This element is used to embed a data source in the page. The data source is iden
 - `params` - the parameters of the data source. This attribute is used only if the `source-url` attribute is specified. and not used if the `type` attribute is specified.
 
 - `headers` - the headers of the data source. This attribute is used only if the `source-url` attribute is specified. and not used if the `type` attribute is specified.
+  
+- `broadcast` -A string value that the system listens for. When this broadcast is detected, the system reloads the BMML data. This attribute is optional.
+
+
 
 
 The following attributes are used for `type=dashboard`:
