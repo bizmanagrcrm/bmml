@@ -151,5 +151,51 @@ Other utility methods include:
 
 ---
 
+## Quotes Helper (`quotesHelper`)
+
+The `quotesHelper` module exposes core functionality for creating and saving quotes. It combines utilities from the internal quote management system.
+
+### API
+
+#### Create Methods
+
+* `quotesHelper.create.quote(data, user?)`
+* `quotesHelper.create.unit(data, user?)`
+* `quotesHelper.create.default(data)`
+
+#### Save Methods
+
+* `quotesHelper.save.saveQuote(quote, timestamp, user)`
+* `quotesHelper.save.createUpdateQtItem(item, user, trx?, keepLink?)`
+* `quotesHelper.save.createUpdateQtItems(quote, items, user)`
+* `quotesHelper.save.applyMarkup(quote, markup, user, trx?)`
+* `quotesHelper.save.reorderItems(quote, data, user)`
+* `quotesHelper.save.quickEnter(quote, items, query, user)`
+* `quotesHelper.save.deleteQtItems(ids, keepLink, user)`
+* `quotesHelper.save.changeListPrice(data, user)`
+* `quotesHelper.save.getAllLinkedItems(item, quote_root_id)`
+* `quotesHelper.save.getAllLinkedQuotes(root_id)`
+
+---
+
+### Examples
+
+#### Create a new quote
+
+```js
+const quote = await quotesHelper.create.quote({ name: "Test", project: 12 }, user);
+```
+
+#### Save an updated quote
+
+```js
+await quotesHelper.save.saveQuote(quoteData, Date.now(), user);
+```
+
+All actions within `quotesHelper` interact with system-managed `quotes`, `quote_items`, `quote_defaults`, and related tables. Use responsibly and ensure data consistency across calls
+
+
+---
+
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
