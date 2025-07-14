@@ -197,5 +197,73 @@ All actions within `quotesHelper` interact with system-managed `quotes`, `quote_
 
 ---
 
+## Projects Helper (`projectsHelper`)
+
+Provides utility functions for managing project-related workflows, including project creation, PO handling, dashboard data aggregation, and status updates.
+
+### Common Methods
+
+- `projectsHelper.createPO(projectId, user, po_number)`
+- `projectsHelper.removePO(projectId, user)`
+- `projectsHelper.getDashboard(userId)`
+- `projectsHelper.getProject(id, extended?, user?)`
+- `projectsHelper.getProjects(query, countOnly?)`
+- `projectsHelper.completeProject(id, query, user)`
+- `projectsHelper.markTask(id, query, user)`
+- `projectsHelper.autoGenerateProposal(id, user)`
+- `projectsHelper.addUpdateProject(project, user, query?, options?)`
+- `projectsHelper.completeProjects(projects, user)`
+- `projectsHelper.makeQtFinal(quote_id, user)`
+- `projectsHelper.startEnd(id, type, open_tasks, user, options?)`
+- `projectsHelper.getAllAssignedPerProject(projectId, compact?)`
+
+### Example
+
+```js
+await projectsHelper.createPO(12, currentUser, 3021);
+
+const dashboard = await projectsHelper.getDashboard(currentUser.id);
+
+const project = await projectsHelper.getProject(12, true, currentUser);
+```
+
+---
+## Mail Helper (`mailHelper`)
+
+Provides email-related functionality, including sending messages, using templates, handling unlock requests, and logging.
+
+### Common Methods
+
+- `mailHelper.send(mailOptions)`
+- `mailHelper.sendGeneric(data, user)`
+- `mailHelper.sendMsg(user_id, msg, email?)`
+- `mailHelper.sendTemplate(fileName, data, options?)`
+- `mailHelper.sendWithEmailTemplate(to, template_name, models, options?)`
+- `mailHelper.requestUnlock(file, user)`
+- `mailHelper.getAll()`
+- `mailHelper.getEmailLog()`
+
+### Example
+
+```js
+await mailHelper.send({
+  to: 'admin@example.com',
+  subject: 'Test Email',
+  html: '<p>Hello World</p>',
+  from: 'noreply@example.com'
+});
+
+await mailHelper.sendWithEmailTemplate(
+  'user@example.com',
+  'welcome_template',
+  { username: 'John' },
+  { subject: 'Welcome!', from: 'support@example.com' }
+);
+```
+
+
+---
+
+
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
