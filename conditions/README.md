@@ -16,6 +16,8 @@ The syntax is based on the following:
 - `IS_NOT_EQUALS` - used to define inequality (case insensitive and ignores sorrounding spaces)
 - `BEGINS_WITH` - used to define that the value begins with the given string (case insensitive and ignores sorrounding spaces)
 - `ENDS_WITH` - used to define that the value ends with the given string (case insensitive and ignores sorrounding spaces)
+- `IS_EMPTY` - used to define that the value is empty (case insensitive and ignores sorrounding spaces)
+- `IS_NOT_EMPTY` - used to define that the value is not empty (case insensitive and ignores sorrounding spaces)
 
 Rules:
 * variables are available based on context (in a form, all the fields are available)
@@ -59,6 +61,9 @@ This means that the value of field1 is equal to 'value1' and the value of field2
 
 ``((field1 IS_EQUALS 'value1') AND (field2 IS_NOT_EQUALS 'value2')) OR (field3 IS_EQUALS 'value3')``
 This means that the value of field1 is equal to 'value1' and the value of field2 is not equal to 'value2' or the value of field3 is equal to 'value3'.
+
+``(field1 IS_EMPTY) AND (field2 IS_NOT_EMPTY)``
+This means that the value of field1 is empty and the value of field2 is not empty.
 
 
 Order of operations:
