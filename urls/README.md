@@ -43,6 +43,7 @@ The following query values are supported:
 - auto_send - if true, the email will be sent automatically once all required fields are filled (optional - default: false)
 - on_sent_go_to - url to redirect to after the email is sent (optional) the url is going to be parsed for variables with the email response (more details required) and the rest of the params of the original url. for example {{params.log_id}} is going to be replaced with the log_id.
 - batch_mode - open the popup in batch mode - this will send multiple emails to multiple recipents, and will not show the template interpolation
+- override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 
 ## Form
