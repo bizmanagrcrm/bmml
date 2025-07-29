@@ -264,6 +264,68 @@ await mailHelper.sendWithEmailTemplate(
 
 ---
 
+## Schedule Script Execution (`scheduleScriptExecution`)
+
+Schedule the execution of custom backend scripts.
+
+### Example
+```js
+scheduleScriptExecution(script_name, {after_ms, data: {some_data: 123}}, user);
+```
+
+Returns the `MessageQueue` Object created when the task was scheduled.
+
+---
+
+## Proposal Helper (`proposalHelper`)
+
+Handles proposals, invoices, quote rendering, emailing, approval, and related operations. Useful for creating customer-facing documents based on project quotes.
+
+### Common Methods
+
+- `proposalHelper.generate(project, { settings, payment_plan, quote_id, approved })`
+- `proposalHelper.updateSettings(id, data)`
+- `proposalHelper.getInfo(projectId, quoteId)`
+- `proposalHelper.email(id, data, user)`
+- `proposalHelper.getRenderData(Proposal)`
+- `proposalHelper.copy(id)`
+- `proposalHelper.getById(id)`
+- `proposalHelper.cancelInvoice(id)`
+- `proposalHelper.approve(url, body, user)`
+- `proposalHelper.renderInvoice(invoice_id, user)`
+- `proposalHelper.createInvoice(proposal)`
+- `proposalHelper.expressInvoice(data, user)`
+- `proposalHelper.customerInvoice(invoiceData, user)`
+- `proposalHelper.proposalApproved(proposal, user, invoice, quote)`
+- `proposalHelper.recalculateInvoiceAmount(invoiceId)`
+
+### Example
+
+```js
+await proposalHelper.email(42, {
+  to: 'client@example.com',
+  subject: 'Proposal Document',
+  message: 'Attached is your proposal',
+  from: 'sales@company.com',
+  include_attachment: true
+}, user);
+
+const proposal = await proposalHelper.generate(33, {
+  settings: { /* template settings */ },
+  quote_id: 89,
+  approved: true
+});
+
+await proposalHelper.approve('abc123', {
+  quote_id: 89,
+  signature_name: 'Jane Doe',
+  signature_font: 'Helvetica',
+  items_approved: true
+}, user);
+```
+
+---
+
 
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
