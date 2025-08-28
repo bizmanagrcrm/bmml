@@ -326,6 +326,45 @@ await proposalHelper.approve('abc123', {
 
 ---
 
+## Project Status Helper (`statusHelper`)
+
+Manages project status workflows, including updating project states, handling tasks, recalculating due dates, and notifying employees.
+
+### Common Methods
+
+- `projectStatusHelper.createUpdate(status)`
+- `projectStatusHelper.updateProjectStatus(project, status, user, query?)`
+- `projectStatusHelper.findNextProjectStatus(project, project_status_id?)`
+- `projectStatusHelper.handleOpenTasks(project, open_tasks?)`
+- `projectStatusHelper.updateDueDateProject(project, ps, user)`
+- `projectStatusHelper.applyNextStatusByTask(task, project, user, next_project_status?)`
+- `projectStatusHelper.isAllToBeCompleted(project_status, taskId)`
+
+### Example
+
+```js
+// Update project to a new status
+await projectStatusHelper.updateProjectStatus(12, 5, currentUser, {
+  open_tasks: "complete"
+});
+
+// Handle open tasks for a project
+await projectStatusHelper.handleOpenTasks(12, "cancel");
+
+// Find the next project status
+const nextStatus = await projectStatusHelper.findNextProjectStatus(12);
+
+// Recalculate due dates for a project
+await projectStatusHelper.updateDueDateProject(project, currentProjectStatus, currentUser);
+
+// Move project to next status based on task completion
+await projectStatusHelper.applyNextStatusByTask(task, project, currentUser);
+
+// Check if all tasks for a status are completed (except a given task)
+const allCompleted = await projectStatusHelper.isAllToBeCompleted(statusId, taskId);
+```
+
+---
 
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
