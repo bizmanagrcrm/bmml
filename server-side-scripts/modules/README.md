@@ -366,5 +366,47 @@ const allCompleted = await projectStatusHelper.isAllToBeCompleted(statusId, task
 
 ---
 
+## Payments Helper (`paymentsHelper`)
+
+Provides functions for managing payments, gateways, balance sheets, and payment methods, including charging credit cards, importing/saving payment methods, and retrieving payments for invoices.
+
+### Common Methods
+
+- `paymentHelper.chargeCC(data, user)`
+- `paymentHelper.getBalanceSheet({ table, id })`
+- `paymentHelper.combine({ ids }, user)`
+- `paymentHelper.getGateways(query?)`
+- `paymentHelper.getPaymentsForInvoice(invoiceId, user)`
+- `paymentHelper.savePaymentMethod(id, body, user)`
+- `paymentHelper.importPaymentMethod(data, user)`
+
+### Example
+
+```js
+// Charge a customer using a payment method
+await paymentHelper.chargeCC({ payment_method_id: 12, invoice: 5, amount: 100 }, currentUser);
+
+// Retrieve available payment gateways
+const gateways = await paymentHelper.getGateways({ active: true });
+
+// Get the balance sheet for a customer or invoice
+const balanceSheet = await paymentHelper.getBalanceSheet({ table: 'customers', id: 12 });
+
+// Save or update a payment method
+await paymentHelper.savePaymentMethod(10, { card_number: '**** **** **** 1234' }, currentUser);
+
+// Import a payment method from a gateway
+await paymentHelper.importPaymentMethod({ gateway_id: 2, customer: 12 }, currentUser);
+
+// Combine multiple payment transactions into a group
+await paymentHelper.combine({ ids: [1,2,3] }, currentUser);
+
+// Retrieve payments applied to an invoice
+const payments = await paymentHelper.getPaymentsForInvoice(5, currentUser);
+```
+
+---
+
+
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
