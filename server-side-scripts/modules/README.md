@@ -332,36 +332,36 @@ Manages project status workflows, including updating project states, handling ta
 
 ### Common Methods
 
-- `projectStatusHelper.createUpdate(status)`
-- `projectStatusHelper.updateProjectStatus(project, status, user, query?)`
-- `projectStatusHelper.findNextProjectStatus(project, project_status_id?)`
-- `projectStatusHelper.handleOpenTasks(project, open_tasks?)`
-- `projectStatusHelper.updateDueDateProject(project, ps, user)`
-- `projectStatusHelper.applyNextStatusByTask(task, project, user, next_project_status?)`
-- `projectStatusHelper.isAllToBeCompleted(project_status, taskId)`
+- `statusHelper.createUpdate(status)`
+- `statusHelper.updateProjectStatus(project, status, user, query?)`
+- `statusHelper.findNextProjectStatus(project, project_status_id?)`
+- `statusHelper.handleOpenTasks(project, open_tasks?)`
+- `statusHelper.updateDueDateProject(project, ps, user)`
+- `statusHelper.applyNextStatusByTask(task, project, user, next_project_status?)`
+- `statusHelper.isAllToBeCompleted(project_status, taskId)`
 
 ### Example
 
 ```js
 // Update project to a new status
-await projectStatusHelper.updateProjectStatus(12, 5, currentUser, {
+await statusHelper.updateProjectStatus(12, 5, currentUser, {
   open_tasks: "complete"
 });
 
 // Handle open tasks for a project
-await projectStatusHelper.handleOpenTasks(12, "cancel");
+await statusHelper.handleOpenTasks(12, "cancel");
 
 // Find the next project status
-const nextStatus = await projectStatusHelper.findNextProjectStatus(12);
+const nextStatus = await statusHelper.findNextProjectStatus(12);
 
 // Recalculate due dates for a project
-await projectStatusHelper.updateDueDateProject(project, currentProjectStatus, currentUser);
+await statusHelper.updateDueDateProject(project, currentProjectStatus, currentUser);
 
 // Move project to next status based on task completion
-await projectStatusHelper.applyNextStatusByTask(task, project, currentUser);
+await statusHelper.applyNextStatusByTask(task, project, currentUser);
 
 // Check if all tasks for a status are completed (except a given task)
-const allCompleted = await projectStatusHelper.isAllToBeCompleted(statusId, taskId);
+const allCompleted = await statusHelper.isAllToBeCompleted(statusId, taskId);
 ```
 
 ---
