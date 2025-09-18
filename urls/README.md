@@ -46,6 +46,26 @@ The following query values are supported:
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 
+## SMS (NOT YET WORKING CONTACT YL)
+
+To create a url that will open the send-sms popup, use the following syntax:
+```/#/open-sms?to={{phone}}&message={{message}}```
+
+The following query values are supported:
+- from - SMS gateway ID of the sender (optional - defaults to default gateway)
+- to - phone number of the recipient
+- message - sms message
+- title - title of the popup (default: Send SMS)
+- template_id - id of the sms template to use (optional)
+- log_table - table name to relate the log to (optional)
+- log_id - id of the record to relate the log to (optional)
+- model_name - the name of the model (view) that should be used for parsing the template
+- model_id - the id of the model (view) that should be used for parsing the template
+- auto_send - if true, the sms will be sent automatically once all required fields are filled (optional - default: false)
+- on_sent_go_to - url to redirect to after the sms is sent (optional) the url is going to be parsed for variables with the sms response (more details required) and the rest of the params of the original url. for example {{params.log_id}} is going to be replaced with the log_id.
+- override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send sms* action
+- $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
+
 ## Form
 
 To open a form to create a new record, use the following syntax:
