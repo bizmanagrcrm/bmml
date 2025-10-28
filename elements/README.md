@@ -55,6 +55,8 @@ This element is used to embed a data source in the page. The data source is iden
   
 - `broadcast` -A string value that the system listens for. When this broadcast is detected, the system reloads the BMML data. This attribute is optional.
 
+- `scope-data-var` - The name of the variable that will hold the data source result. Default is `$data`.
+
 
 
 
@@ -88,7 +90,8 @@ The following attributes are used for `type=crud`:
 
 The variables that can be used in the children of this element are:
 
-#### `$data` variable (with type `dashboard``)
+#### `$data` variable (with type = 'dashboard')
+Note the var name could be changed using the `scope-data-var` attribute.
 This variable contains the data of the data source. It is an object with the following properties:
     `data` - the data of the data source (this is an object with the fields of the data source)
     `display_name` - the display name of the data source
@@ -115,4 +118,20 @@ This variable is true if the data source is still loading.
         <div ng-if="$error">
             {{$errorMessage}}
         </div>
-    </bmml-data-src>``` 
+    </bmml-data-src>```
+
+#### Example with nested elements
+```<bmml-data-src type="dashboard" src-name="customers" src-id="1">
+    <bmml-data-src ource-url="/cust_report/query/88" param-customer="{{$urlParams.id}}" scope-data-var="reportData">
+        <div ng-if="!$loading">
+            <div>Report Data:</div>
+            <div>{{reportData.data}}</div>
+        </div>
+        <div ng-if="$loading">
+            Loading report...
+        </div>
+        <div ng-if="$error">
+            {{$errorMessage}}
+        </div>
+    </bmml-data-src>
+</bmml-data-src>```
