@@ -264,6 +264,149 @@ await mailHelper.sendWithEmailTemplate(
 
 ---
 
+## Schedule Script Execution (`scheduleScriptExecution`)
+
+Schedule the execution of custom backend scripts.
+
+### Example
+```js
+scheduleScriptExecution(script_name, {after_ms, data: {some_data: 123}}, user);
+```
+
+Returns the `MessageQueue` Object created when the task was scheduled.
+
+---
+
+## Proposal Helper (`proposalHelper`)
+
+Handles proposals, invoices, quote rendering, emailing, approval, and related operations. Useful for creating customer-facing documents based on project quotes.
+
+### Common Methods
+
+- `proposalHelper.generate(project, { settings, payment_plan, quote_id, approved })`
+- `proposalHelper.updateSettings(id, data)`
+- `proposalHelper.getInfo(projectId, quoteId)`
+- `proposalHelper.email(id, data, user)`
+- `proposalHelper.getRenderData(Proposal)`
+- `proposalHelper.copy(id)`
+- `proposalHelper.getById(id)`
+- `proposalHelper.cancelInvoice(id)`
+- `proposalHelper.approve(url, body, user)`
+- `proposalHelper.renderInvoice(invoice_id, user)`
+- `proposalHelper.createInvoice(proposal)`
+- `proposalHelper.expressInvoice(data, user)`
+- `proposalHelper.customerInvoice(invoiceData, user)`
+- `proposalHelper.proposalApproved(proposal, user, invoice, quote)`
+- `proposalHelper.recalculateInvoiceAmount(invoiceId)`
+
+### Example
+
+```js
+await proposalHelper.email(42, {
+  to: 'client@example.com',
+  subject: 'Proposal Document',
+  message: 'Attached is your proposal',
+  from: 'sales@company.com',
+  include_attachment: true
+}, user);
+
+const proposal = await proposalHelper.generate(33, {
+  settings: { /* template settings */ },
+  quote_id: 89,
+  approved: true
+});
+
+await proposalHelper.approve('abc123', {
+  quote_id: 89,
+  signature_name: 'Jane Doe',
+  signature_font: 'Helvetica',
+  items_approved: true
+}, user);
+```
+
+---
+
+## Project Status Helper (`statusHelper`)
+
+Manages project status workflows, including updating project states, handling tasks, recalculating due dates, and notifying employees.
+
+### Common Methods
+
+- `statusHelper.createUpdate(status)`
+- `statusHelper.updateProjectStatus(project, status, user, query?)`
+- `statusHelper.findNextProjectStatus(project, project_status_id?)`
+- `statusHelper.handleOpenTasks(project, open_tasks?)`
+- `statusHelper.updateDueDateProject(project, ps, user)`
+- `statusHelper.applyNextStatusByTask(task, project, user, next_project_status?)`
+- `statusHelper.isAllToBeCompleted(project_status, taskId)`
+
+### Example
+
+```js
+// Update project to a new status
+await statusHelper.updateProjectStatus(12, 5, currentUser, {
+  open_tasks: "complete"
+});
+
+// Handle open tasks for a project
+await statusHelper.handleOpenTasks(12, "cancel");
+
+// Find the next project status
+const nextStatus = await statusHelper.findNextProjectStatus(12);
+
+// Recalculate due dates for a project
+await statusHelper.updateDueDateProject(project, currentProjectStatus, currentUser);
+
+// Move project to next status based on task completion
+await statusHelper.applyNextStatusByTask(task, project, currentUser);
+
+// Check if all tasks for a status are completed (except a given task)
+const allCompleted = await statusHelper.isAllToBeCompleted(statusId, taskId);
+```
+
+---
+
+## Payments Helper (`paymentsHelper`)
+
+Provides functions for managing payments, gateways, balance sheets, and payment methods, including charging credit cards, importing/saving payment methods, and retrieving payments for invoices.
+
+### Common Methods
+
+- `paymentHelper.chargeCC(data, user)`
+- `paymentHelper.getBalanceSheet({ table, id })`
+- `paymentHelper.combine({ ids }, user)`
+- `paymentHelper.getGateways(query?)`
+- `paymentHelper.getPaymentsForInvoice(invoiceId, user)`
+- `paymentHelper.savePaymentMethod(id, body, user)`
+- `paymentHelper.importPaymentMethod(data, user)`
+
+### Example
+
+```js
+// Charge a customer using a payment method
+await paymentHelper.chargeCC({ payment_method_id: 12, invoice: 5, amount: 100 }, currentUser);
+
+// Retrieve available payment gateways
+const gateways = await paymentHelper.getGateways({ active: true });
+
+// Get the balance sheet for a customer or invoice
+const balanceSheet = await paymentHelper.getBalanceSheet({ table: 'customers', id: 12 });
+
+// Save or update a payment method
+await paymentHelper.savePaymentMethod(10, { card_number: '**** **** **** 1234' }, currentUser);
+
+// Import a payment method from a gateway
+await paymentHelper.importPaymentMethod({ gateway_id: 2, customer: 12 }, currentUser);
+
+// Combine multiple payment transactions into a group
+await paymentHelper.combine({ ids: [1,2,3] }, currentUser);
+
+// Retrieve payments applied to an invoice
+const payments = await paymentHelper.getPaymentsForInvoice(5, currentUser);
+```
+
+---
+
 
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
