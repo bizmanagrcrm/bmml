@@ -107,7 +107,8 @@ This variable contains the error message if there was an error loading the data 
 This variable is true if the data source is still loading.
 
 #### Example
-    ```<bmml-data-src type="dashboard" src-name="{{$urlParams.name}}" src-id="{{$urlParams.id}}">
+```
+<bmml-data-src type="dashboard" src-name="{{$urlParams.name}}" src-id="{{$urlParams.id}}">
         <div ng-if="!$loading">
             <div>{{$data.display_name}}</div>
             <div>{{$data.data.name}}</div>
@@ -118,20 +119,23 @@ This variable is true if the data source is still loading.
         <div ng-if="$error">
             {{$errorMessage}}
         </div>
-    </bmml-data-src>```
+    </bmml-data-src>
+```
 
 #### Example with nested elements
-```<bmml-data-src type="dashboard" src-name="customers" src-id="1">
-    <bmml-data-src ource-url="/cust_report/query/88" param-customer="{{$urlParams.id}}" scope-data-var="reportData">
-        <div ng-if="!$loading">
-            <div>Report Data:</div>
-            <div>{{reportData.data}}</div>
-        </div>
-        <div ng-if="$loading">
-            Loading report...
-        </div>
-        <div ng-if="$error">
-            {{$errorMessage}}
-        </div>
+```
+<bmml-data-src type="dashboard" src-name="customers" src-id="1">
+        <bmml-data-src source-url="/cust_report/query/88" param-customer="{{$urlParams.id}}" scope-data-var="reportData">
+            <div ng-if="!$loading">
+                <div>Report Data:</div>
+                <div>{{reportData.data}}</div>
+            </div>
+            <div ng-if="$loading">
+                Loading report...
+            </div>
+            <div ng-if="$error">
+                {{$errorMessage}}
+            </div>
+        </bmml-data-src>
     </bmml-data-src>
-</bmml-data-src>```
+```
