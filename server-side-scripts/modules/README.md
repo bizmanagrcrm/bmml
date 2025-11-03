@@ -407,6 +407,51 @@ const payments = await paymentHelper.getPaymentsForInvoice(5, currentUser);
 
 ---
 
+## SMS Helper (`smsHelper`)
+
+Handles SMS-related operations, including sending, receiving, syncing, and managing conversations through different SMS gateways.
+
+### Common Methods
+
+* `smsHelper.sendSMS({ gateway_id, text, to, from, ...data }, user)`
+* `smsHelper.getGateway(gateway_id)`
+* `smsHelper.setupReceiveSMS(gateway_id, data)`
+* `smsHelper.receiveSMS(gateway_id, data)`
+* `smsHelper.refreshGateway(gateway_id)`
+* `smsHelper.syncConversationsFromGateway(gateway_id)`
+* `smsHelper.getConversations({ gateway_id, ...query }, user)`
+
+### Example
+
+```js
+// Send an SMS through a specific gateway
+await smsHelper.sendSMS({
+  gateway_id: 1,
+  text: 'Hello from Support!',
+  to: '15551234567',
+  from: '15559876543',
+  table_name: 'customers',
+  table_id: 12
+}, currentUser);
+
+// Set up webhook for receiving SMS
+await smsHelper.setupReceiveSMS(2, { url: 'https://example.com/sms-webhook' });
+
+// Handle incoming SMS from a gateway
+await smsHelper.receiveSMS(2, { from: '15551234567', to: '15559876543', text: 'Hi there!' });
+
+// Refresh gateway connection or configuration
+await smsHelper.refreshGateway(3);
+
+// Sync SMS conversations from gateway
+await smsHelper.syncConversationsFromGateway(1);
+
+// Retrieve all SMS conversations for a specific gateway
+const conversations = await smsHelper.getConversations({ gateway_id: 1 }, currentUser);
+```
+
+---
+
 
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
