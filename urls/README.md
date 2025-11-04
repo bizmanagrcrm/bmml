@@ -47,10 +47,15 @@ The following query values are supported:
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 
-## SMS (NOT YET WORKING CONTACT YL)
+## SMS
 
 To create a url that will open the send-sms popup, use the following syntax:
+
 ```/#/open-sms?to={{phone}}&message={{message}}```
+
+URL with all features put to use:
+
+```/open-sms/{{phone}}?from={{system_phone}}&gateway={{gateway_id}}&model_name=customers&model_id={{id}}&log_table=customers&log_id={{id}}&template_id=5```
 
 The following query values are supported:
 - from - SMS gateway ID of the sender (optional - defaults to default gateway)
