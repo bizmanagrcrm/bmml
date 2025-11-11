@@ -452,6 +452,74 @@ const conversations = await smsHelper.getConversations({ gateway_id: 1 }, curren
 
 ---
 
+## Templates Helper (`templatesHelper`)
+
+Generates dynamic text content by replacing placeholders within template strings using data from one or more models. Supports batch (mail-merge style) output.
+
+### Common Methods
+
+* `templatesHelper.buildTemplate(str, models, user)`
+* `templatesHelper.buildTemplates(arr, models, user, batch_mode?, email_field?)`
+
+### Description
+
+| Method           | Purpose                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `buildTemplate`  | Replace variables inside a single string template using data from the provided models.                                             |
+| `buildTemplates` | Replace variables inside multiple templates. Supports **batch mode** to create recipient-based variations (e.g., email campaigns). |
+
+### Models Format
+
+Each model should be in the form:
+
+```js
+{ name: "table_name", id: 12 }
+```
+
+or with a pre-loaded record:
+
+```js
+{ name: "table_name", record: { ...data } }
+```
+
+### Example Usage
+
+```js
+// Single template replacement
+const output = await templatesHelper.buildTemplate(
+  "Hello ${customer.first_name}, your order #${order.id} is confirmed!",
+  [
+    { name: "customer", id: 42 },
+    { name: "order", id: 91 }
+  ],
+  currentUser
+);
+
+// Multiple templates
+const outputList = await templatesHelper.buildTemplates(
+  [
+    "Dear ${customer.first_name}",
+    "Your balance is ${customer.balance}"
+  ],
+  [{ name: "customer", id: 42 }],
+  currentUser
+);
+
+// Batch mode (mailing list style)
+const batch = await templatesHelper.buildTemplates(
+  ["Hello ${customer.first_name}, we have an update for you!"],
+  [{ name: "customer", id: [10, 11, 12] }],
+  currentUser,
+  true, // batch_mode
+  "email" // field used for recipient address
+);
+
+// Result will contain:
+// batch.text  -> template rewritten with %recipient.field% placeholders
+// batch.data  -> array of recipient records (email + fields used)
+```
+---
+
 
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
