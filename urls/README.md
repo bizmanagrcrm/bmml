@@ -55,10 +55,10 @@ To create a url that will open the send-sms popup, use the following syntax:
 
 URL with all features put to use:
 
-```/open-sms/{{phone}}?from={{system_phone}}&gateway={{gateway_id}}&model_name=customers&model_id={{id}}&log_table=customers&log_id={{id}}&template_id=5```
+```/open-sms/{{to_phone}}?from={{system_phone || gateway_id}}&model_name=customers&model_id={{id}}&log_table=customers&log_id={{id}}&template_id=5```
 
 The following query values are supported:
-- from - SMS gateway ID of the sender (optional - defaults to default gateway)
+- from - SMS gateway ID of the sender or Gateway Phone Number
 - to - phone number of the recipient
 - message - sms message
 - title - title of the popup (default: Send SMS)
