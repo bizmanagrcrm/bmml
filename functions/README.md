@@ -38,7 +38,7 @@ The second argument is the internal name of the action to execute.
 The third argument is the data to send to the action. For system actions, this is usually the record object. For custom actions, this is any data you want to send to the action.
 If the action is a custom action, the data will be available in the action code in the `record` variable.
 
-The fourth argument is the scope of the view that triggered the action. If not provided, the function falls back to **this** which will normally be the scope where the call originated (i.e., the caller's scope). If the function is invoked explicitly via $root(i.e., $root.executeActionByName(...)), **this** will be **$rootScope**, The resulting scope is available as a variable `scope`in the action code.
+The fourth argument is the scope of the view that triggered the action. If not provided, the function falls back to **this** which will normally be the scope where the call originated (i.e., the caller's scope). If the function is invoked explicitly via $root(i.e., $root.executeActionByName(...)), **this** will be **$rootScope**, The resulting scope is available as a variable `scope`in the action code. This argument usually does **not** need to be past.
 
 ### `isArray(value)`
 
