@@ -71,6 +71,18 @@ const today = moment().format('YYYY-MM-DD');
 
 ---
 
+## Cheerio HTML Parser (`cheerio`)
+
+Use Cheerio to parse and manipulate HTNL.
+
+### Example
+```js
+const html = cheerio.load("<div id=test">hello</div");
+console.log(html("#test).text)
+```
+
+---
+
 ## Call Script (`callScript`)
 
 Call another script by name and pass environment data.
