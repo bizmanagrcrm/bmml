@@ -77,8 +77,8 @@ Use Cheerio to parse and manipulate HTNL.
 
 ### Example
 ```js
-const html = cheerio.load("<div id=test">hello</div");
-console.log(html("#test).text)
+const html = cheerio.load("<div id='test'>hello</div>");
+return html("#test").text();
 ```
 
 ---
