@@ -82,4 +82,4 @@ The following query parameters can be sent along:
 * customer: the customer to connect the cc charge to
 * invoice: the invoice to apply the charge to
 
-Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1
+`Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1`
