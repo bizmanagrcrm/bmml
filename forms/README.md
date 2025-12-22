@@ -81,5 +81,6 @@ The following query parameters can be sent along:
 * gateway: will prefill the gateway
 * customer: the customer to connect the cc charge to
 * invoice: the invoice to apply the charge to
+* hide_payment_gateway: set to 'true' to hide the 'show more options'. Will hide the payment gateway so that it cant be changed
 
 `Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1`
