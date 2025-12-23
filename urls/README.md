@@ -46,7 +46,8 @@ The following query values are supported:
 - email_field - the name of the field that contains the email address (optional - default: email) this is used to match the recipient email address with the field in the view for batch mode and for parsing the template
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
-- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message. If 'template' is in hide_fields then also 'to' and 'from' get hidden.
+- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message, subject
+
 
 ## SMS
 
@@ -72,7 +73,7 @@ The following query values are supported:
 - on_sent_go_to - url to redirect to after the sms is sent (optional) the url is going to be parsed for variables with the sms response (more details required) and the rest of the params of the original url. for example {{params.log_id}} is going to be replaced with the log_id.
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send sms* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
-- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message, subject
+- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message. If 'template' is in hide_fields then also 'to' and 'from' get hidden.
 
 
 ## Form
