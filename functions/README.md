@@ -32,11 +32,13 @@ The first argument is the format of the date. For format options, see [here](htt
 
 ### `executeActionByName(tableName, actionName, data, scope, options)`
 The first argument is the internal name of the table that the action is attached to.
+
 The second argument is the internal name of the action to execute.
+
 The third argument is the data to send to the action. For system actions, this is usually the record object. For custom actions, this is any data you want to send to the action.
 If the action is a custom action, the data will be available in the action code in the `record` variable.
 There is also a `scope` variable available in the action code. This variable contains the scope of the view that the action was triggered from.
-The fourth argument is the scope to use when executing the action. (default: current scope)
+The fourth argument is the scope of the view that triggered the action. If not provided, the function falls back to **this** which will normally be the scope where the call originated (i.e., the caller's scope). If the function is invoked explicitly via $root(i.e., $root.executeActionByName(...)), **this** will be **$rootScope**, The resulting scope is available as a variable `scope`in the action code. This argument usually does **not** need to be past.
 The fifth argument is an options object. This object can contain the following properties:
 - `promiseMode` - if set to true, the function will return a promise that resolves when the action is completed. (default: false)
 - `failSilently` - if set to true, the function will not show any error messages if the action fails. (default: true)

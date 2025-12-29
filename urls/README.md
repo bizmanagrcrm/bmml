@@ -25,7 +25,7 @@ Variables can be passed to the page using the query string. For example:
 ## Email
 
 To create a url that will open the send-email popup, use the following syntax:
-```/#/open-email?to={{email}}&subject={{subject}}&message={{message}}```
+```/#/open-email?to={{email}}&subject={{subject}}&message={{message}}&hide_fields=to&hide_fields=from```
 
 The following query values are supported:
 - from - email address of the sender (optional - default: current user/employee email)
@@ -46,14 +46,22 @@ The following query values are supported:
 - email_field - the name of the field that contains the email address (optional - default: email) this is used to match the recipient email address with the field in the view for batch mode and for parsing the template
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
+- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message, subject
+- post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send email* action
 
-## SMS (NOT YET WORKING CONTACT YL)
+
+## SMS
 
 To create a url that will open the send-sms popup, use the following syntax:
+
 ```/#/open-sms?to={{phone}}&message={{message}}```
 
+URL with all features put to use:
+
+```/open-sms/{{to_phone}}?from={{system_phone || gateway_id}}&model_name=customers&model_id={{id}}&log_table=customers&log_id={{id}}&template_id=5&hide_fields=to&hide_fields=from```
+
 The following query values are supported:
-- from - SMS gateway ID of the sender (optional - defaults to default gateway)
+- from - SMS gateway ID of the sender or Gateway Phone Number
 - to - phone number of the recipient
 - message - sms message
 - title - title of the popup (default: Send SMS)
@@ -66,6 +74,9 @@ The following query values are supported:
 - on_sent_go_to - url to redirect to after the sms is sent (optional) the url is going to be parsed for variables with the sms response (more details required) and the rest of the params of the original url. for example {{params.log_id}} is going to be replaced with the log_id.
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send sms* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
+- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message.
+- post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send sms* action
+
 
 ## Form
 

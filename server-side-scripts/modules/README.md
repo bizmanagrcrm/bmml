@@ -71,6 +71,18 @@ const today = moment().format('YYYY-MM-DD');
 
 ---
 
+## Cheerio HTML Parser (`cheerio`)
+
+Use Cheerio to parse and manipulate HTNL.
+
+### Example
+```js
+const html = cheerio.load("<div id='test'>hello</div>");
+return html("#test").text();
+```
+
+---
+
 ## Call Script (`callScript`)
 
 Call another script by name and pass environment data.
@@ -405,6 +417,119 @@ await paymentHelper.combine({ ids: [1,2,3] }, currentUser);
 const payments = await paymentHelper.getPaymentsForInvoice(5, currentUser);
 ```
 
+---
+
+## SMS Helper (`smsHelper`)
+
+Handles SMS-related operations, including sending, receiving, syncing, and managing conversations through different SMS gateways.
+
+### Common Methods
+
+* `smsHelper.sendSMS({ gateway_id, text, to, from, ...data }, user)`
+* `smsHelper.getGateway(gateway_id)`
+* `smsHelper.setupReceiveSMS(gateway_id, data)`
+* `smsHelper.receiveSMS(gateway_id, data)`
+* `smsHelper.refreshGateway(gateway_id)`
+* `smsHelper.syncConversationsFromGateway(gateway_id)`
+* `smsHelper.getConversations({ gateway_id, ...query }, user)`
+
+### Example
+
+```js
+// Send an SMS through a specific gateway
+await smsHelper.sendSMS({
+  gateway_id: 1,
+  text: 'Hello from Support!',
+  to: '15551234567',
+  from: '15559876543',
+  table_name: 'customers',
+  table_id: 12
+}, currentUser);
+
+// Set up webhook for receiving SMS
+await smsHelper.setupReceiveSMS(2, { url: 'https://example.com/sms-webhook' });
+
+// Handle incoming SMS from a gateway
+await smsHelper.receiveSMS(2, { from: '15551234567', to: '15559876543', text: 'Hi there!' });
+
+// Refresh gateway connection or configuration
+await smsHelper.refreshGateway(3);
+
+// Sync SMS conversations from gateway
+await smsHelper.syncConversationsFromGateway(1);
+
+// Retrieve all SMS conversations for a specific gateway
+const conversations = await smsHelper.getConversations({ gateway_id: 1 }, currentUser);
+```
+
+---
+
+## Templates Helper (`templatesHelper`)
+
+Generates dynamic text content by replacing placeholders within template strings using data from one or more models. Supports batch (mail-merge style) output.
+
+### Common Methods
+
+* `templatesHelper.buildTemplate(str, models, user)`
+* `templatesHelper.buildTemplates(arr, models, user, batch_mode?, email_field?)`
+
+### Description
+
+| Method           | Purpose                                                                                                                            |
+| ---------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `buildTemplate`  | Replace variables inside a single string template using data from the provided models.                                             |
+| `buildTemplates` | Replace variables inside multiple templates. Supports **batch mode** to create recipient-based variations (e.g., email campaigns). |
+
+### Models Format
+
+Each model should be in the form:
+
+```js
+{ name: "table_name", id: 12 }
+```
+
+or with a pre-loaded record:
+
+```js
+{ name: "table_name", record: { ...data } }
+```
+
+### Example Usage
+
+```js
+// Single template replacement
+const output = await templatesHelper.buildTemplate(
+  "Hello ${customer.first_name}, your order #${order.id} is confirmed!",
+  [
+    { name: "customer", id: 42 },
+    { name: "order", id: 91 }
+  ],
+  currentUser
+);
+
+// Multiple templates
+const outputList = await templatesHelper.buildTemplates(
+  [
+    "Dear ${customer.first_name}",
+    "Your balance is ${customer.balance}"
+  ],
+  [{ name: "customer", id: 42 }],
+  currentUser
+);
+
+// Batch mode (mailing list style)
+const batch = await templatesHelper.buildTemplates(
+  ["Hello ${customer.first_name}, we have an update for you!"],
+  [{ name: "customer", id: [10, 11, 12] }],
+  currentUser,
+  true, // batch_mode
+  "email" // field used for recipient address
+);
+
+// Result will contain:
+// batch.text  -> template rewritten with %recipient.field% placeholders
+// batch.data  -> array of recipient records (email + fields used)
+```
 ---
 
 

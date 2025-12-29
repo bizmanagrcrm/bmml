@@ -72,3 +72,15 @@ In the html you can also use variables, for example:
 
 The `record` variable is the record object that is being edited or created in the form.
 
+## Charge Credit Card Form
+To open the charge cc form, redirect to the following url: /#/payments/charge-cc
+
+The following query parameters can be sent along: 
+* amount: will prefill the amount input
+* pre_data_amount: will prefill amount input AND disable the input box. If both amount and pre_data_amount is sent, pre_data_amount will override amount.
+* gateway: will prefill the gateway
+* customer: the customer to connect the cc charge to
+* invoice: the invoice to apply the charge to
+* hide_payment_gateway: set to 'true' to hide the 'show more options'. Will hide the payment gateway so that it cant be changed
+
+`Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1`
