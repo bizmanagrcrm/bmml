@@ -78,6 +78,15 @@ The following query values are supported:
 - post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send sms* action
 
 
+## Refunds
+To create a url that will open the refund form, use the following syntax:
+```#/payments/refund/{{id}}?post_refund_action=test_refund_action__c```
+
+- The id is the id of the transaction being refunded
+
+The following query values are supported:
+- post_refund_action - internal name of a custom action on the *payment_transaction* table that will run **after** the refund is proccessed
+
 ## Form
 
 To open a form to create a new record, use the following syntax:
