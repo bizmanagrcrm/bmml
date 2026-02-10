@@ -39,7 +39,7 @@ The `exceptions` array defines specific rules within the policy. Each exception 
 Grants or restricts access to specific CRUD actions on database tables.
 
 **Format:**  
-`crud:{table}:{action}:{filter_clm:filter_val}`
+`crud:{table}:{action}:{filter_clm=filter_val}`
 
 **Example:**  
 - `crud:orders:read:customer_id=42` → Allows reading only orders where `customer_id=42`.
@@ -54,6 +54,65 @@ Grants or restricts access to specific URLs.
 **Example:**  
 - `url:/admin/reports` → Grants access to the `/admin/reports` page.
 - `url:/api/v1/products` → Grants API access to the `/api/v1/products` endpoint.
+
+
+## Session Variables in Policy Exceptions
+
+Policy exceptions support **dynamic session variables** that are resolved at runtime from the current session user. This allows policies to be scoped per user without hardcoding values.
+
+### Syntax
+
+Session variables use double brackets and a `user.` path:
+
+- `[[user.id]]`
+- `[[user.email]]`
+- `[[user.role]]`
+- `[[user.<field>]]`
+
+At request time, these placeholders are replaced with the corresponding value from the session’s user object.
+
+### Supported Locations
+
+Session variables can be used in **exception filters** (the `{filter_clm=filter_val}` part of a CRUD exception).
+
+**CRUD format:**  
+`crud:{table}:{action}:{filter_clm=filter_val}`
+
+### Example
+
+Restrict users to reading only their own records:
+
+```
+
+crud:contacts:read:owner=[[user.id]]
+
+```
+
+At runtime, this is evaluated as if it were:
+
+```
+
+crud:contacts:read:owner=<current_user_id>
+
+```
+
+### Typical Configuration
+
+To enforce “users can only access their own resources”:
+
+- `allow_all = false` (whitelist mode)
+- `exceptions = ['crud:contacts:read:owner=[[user.id]]']`
+
+**Result:**
+- Internal users only see records they own.
+- API users only see records they own.
+- No cross-user data leakage occurs.
+
+### Behavior Notes
+
+- Session variables are resolved **per request**.
+- If a referenced user field does not exist or is `null`, the exception will not match any records.
+- This feature is intended for access scoping (e.g. per-user, per-tenant).
 
 ## Default Policies
 
