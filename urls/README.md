@@ -42,7 +42,8 @@ The following query values are supported:
 - model_id - the id of the model (view) that should be used for parsing the template
 - auto_send - if true, the email will be sent automatically once all required fields are filled (optional - default: false)
 - on_sent_go_to - url to redirect to after the email is sent (optional) the url is going to be parsed for variables with the email response (more details required) and the rest of the params of the original url. for example {{params.log_id}} is going to be replaced with the log_id.
-- batch_mode - open the popup in batch mode - this will send multiple emails to multiple recipents, and will not show the template interpolation
+- batch_mode - open the popup in batch mode - this will send multiple emails to multiple recipents, and will not show the template interpolation. **Note:** when using batch mode, you can only use one view in variables.
+- main_recipient - email address to use as the main recipient (to) in batch mode. When set, this email address will be used as the "to" and all other recipients will be added as bcc. (optional - only applies to batch mode)
 - email_field - the name of the field that contains the email address (optional - default: email) this is used to match the recipient email address with the field in the view for batch mode and for parsing the template
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
