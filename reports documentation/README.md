@@ -68,5 +68,93 @@ The `actions` setting controls which action menus are available for the report f
     }
   ]
 }
+```
+# Reports Params
+---
+
+## `params` Attribute
+
+The **params box** defines the input parameters required to run a report.
+
+Each parameter becomes an input field in the report UI and is passed into the SQL query using named bindings.
+
+Parameters are referenced in SQL using:
+
+*:param_name*
+
+
+Example:
+
+```sql
+WHERE l.project__c = :project
+AND cr.report_year__c = :year
+AND cr.report_month__c = :month
+```
+
+## Structure
+
+`params` is an array of parameter definitions.
+
+### Parameter Object Properties
+
+| Property | Type | Description |
+|----------|------|-------------|
+| `display_name` | string | Label shown in the report UI. |
+| `internal_name` | string | Parameter name used in SQL (referenced as `:internal_name`). |
+| `input_type` | string | Type of input field (`number`, `text`, `ref`). |
+| `required` | boolean | If `true`, the report cannot run without this value. |
+| `otherTable` | string | *(For `ref` type only)* Table used to populate the reference list. |
+| `otherColumnDisplay` | string | *(For `ref` type only)* Column displayed in the dropdown. |
+
+---
+
+### Input Types
+
+#### `number`
+Numeric input field.
+
+#### `text`
+Free text input field.
+
+#### `ref`
+Reference selector (dropdown) populated from another table.
+
+**Requires:**
+- `otherTable`
+- `otherColumnDisplay`
+
+
+## Example
+
+```json
+[
+  {
+    "display_name": "Customer",
+    "input_type": "ref",
+    "otherColumnDisplay": "name",
+    "otherTable": "customers",
+    "required": true,
+    "internal_name": "customer"
+  },
+  {
+    "display_name": "Year",
+    "input_type": "number",
+    "required": true,
+    "internal_name": "year"
+  },
+  {
+    "display_name": "Month",
+    "input_type": "text",
+    "required": true,
+    "internal_name": "month"
+  }
+]
+```
+Used in SQL:
+```sql
+WHERE l.customer__c = :customer
+AND cr.report_year__c = :year
+AND cr.report_month__c = :month
+```
 
 
