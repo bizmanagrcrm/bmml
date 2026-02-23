@@ -28,4 +28,16 @@ Or with a different format:
 {{ '12:00:00' | bmmlTime: 'HH:mm' }}
 ```
 
+## Encode URI component filter
+Used to encode a part of a url.
+
+For example:
+```html
+<div ng-init="wife='wife#here'">
+  <button ng-click="goToPageByUrl('/page/urlparams?field=wife__c&def_value=' + (wife | encodeUrIComponent) + '&field=husband__c&def_value=HUSBAND')">
+    Press me!
+  </button>
+</div>
+```
+
 Read more about the [Format tokens](https://momentjs.com/docs/#/displaying/format/) for the format options.
