@@ -49,6 +49,7 @@ The following query values are supported:
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 - hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message, subject
 - post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send email* action
+- from_display_name - display name of the sender that will come up in the email 
 
 
 ## SMS
