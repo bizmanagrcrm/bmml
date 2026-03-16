@@ -47,9 +47,10 @@ The following query values are supported:
 - email_field - the name of the field that contains the email address (optional - default: email) this is used to match the recipient email address with the field in the view for batch mode and for parsing the template
 - override_send_action - internal name of a custom action on the *cust_templates* table that will run instead of the default *send email* action
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
-- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message, subject
+- hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message, subject, from_display_name, reply_to
 - post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send email* action
-- from_display_name - display name of the sender that will come up in the email 
+- from_display_name - display name of the sender that will come up in the email
+- reply_to - email address that will be used if the email is replied to
 
 
 ## SMS
