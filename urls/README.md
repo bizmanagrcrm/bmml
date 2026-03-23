@@ -51,6 +51,8 @@ The following query values are supported:
 - post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send email* action
 - from_display_name - display name of the sender that will come up in the email
 - reply_email - email address that will be used if the email is replied to
+- table_name - internal name of the table you want to connect the email to (optional). To be used if you want to record when an email is sent for a specific record in a specific table
+- table_id - id of the record in table_name table that you want to connect the email to (required if table_name is set).
 
 
 ## SMS
@@ -79,6 +81,9 @@ The following query values are supported:
 - $modal_size - size of the popup (optional - default: lg) - possible values: sm, md, lg
 - hide_fields - name of fields to hide on the popup (optional). Available fields: template, from, to, message.
 - post_send_action - internal name of a custom action on the *cust_templates* table that will run **after** the default *send sms* action
+- table_name - internal name of the table you want to connect the sms to (optional). To be used if you want to record when an sms is sent for a specific record in a specific table
+- table_id - id of the record in table_name table that you want to connect the sms to (required if table_name is set).
+
 
 
 ## Refunds
