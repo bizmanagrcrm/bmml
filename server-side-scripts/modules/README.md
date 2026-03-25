@@ -532,6 +532,131 @@ const batch = await templatesHelper.buildTemplates(
 ```
 ---
 
+## Recycle Bin Helper (`recycleBin`)
+
+Provides soft-delete, restore, and permanent deletion functionality across related records. Automatically tracks dependencies and groups deletions.
+
+### API
+
+#### Core Methods
+
+* `recycleBin.markAsDeleted(table, table_id, user)`
+  Soft delete a record and all its dependent records.
+
+* `recycleBin.executeSoftDelete(data)`
+  Internal trigger-based soft delete execution.
+
+* `recycleBin.restore(group_id, user)`
+  Restore all records in a deletion group.
+
+#### Deletion Methods
+
+* `recycleBin.deleteForever(group_id, user)`
+  Permanently delete all records in a group.
+
+* `recycleBin.deleteForeverByRBid(recycle_bin_id, user)`
+  Permanently delete using a recycle bin record ID.
+
+#### Lookup / Utility Methods
+
+* `recycleBin.getAllRecordsToDelete(group_id)`
+  Get all records associated with a deletion group.
+
+* `recycleBin.proccesAndGetAllRecordsToDelete(recycle_bin_id)`
+  Recursively collect all related records for deletion.
+
+* `recycleBin.getDpnds(schema_name, table_name)`
+  Get foreign key dependencies for a table.
+
+### Examples
+
+#### Soft delete a record
+
+```js
+await recycleBin.markAsDeleted('public.customers', 123, user);
+```
+
+#### Restore a deleted group
+
+```js
+await recycleBin.restore(groupId, user);
+```
+
+#### Permanently delete a group
+
+```js
+await recycleBin.deleteForever(groupId, user);
+```
+
+Handles cascading deletes via foreign key relationships and groups all affected records under a single `group_id` for safe restore or permanent deletion.
+
+---
+
+## Deliveries Helper (`deliveriesHelper`)
+
+Provides full delivery lifecycle management, including creation, updates, PDF generation, and data retrieval.
+
+### API
+
+#### Retrieval Methods
+
+* `deliveriesHelper.getAll(query?)`
+  Get all deliveries with optional filters.
+
+* `deliveriesHelper.getInfo(invoice_id, id?, cat_id?)`
+  Get delivery context, including invoice, items, and delivery history.
+
+* `deliveriesHelper.getRenderData(public_url)`
+  Get full data required for rendering delivery PDFs.
+
+#### Delivery Actions
+
+* `deliveriesHelper.generateSlip(delivery, items, settings, user)`
+  Create a new delivery slip and associated item records.
+
+* `deliveriesHelper.updateSlip(id, items, settings, user)`
+  Update an existing delivery slip.
+
+* `deliveriesHelper.deleteSlip(id)`
+  Delete a delivery and its items.
+
+#### PDF Methods
+
+* `deliveriesHelper.generateSlip(...)`
+  Generates and saves a delivery PDF.
+
+* `deliveriesHelper.getDocDefinition(deliveryId, user)`
+  Get PDF document definition for a delivery.
+
+### Examples
+
+#### Create a delivery slip
+
+```js
+const publicUrl = await deliveriesHelper.generateSlip(
+  { invoice_id: 10, quote_id: 5 },
+  items,
+  settings,
+  user
+);
+```
+
+#### Update a delivery
+
+```js
+await deliveriesHelper.updateSlip(deliveryId, items, settings, user);
+```
+
+#### Get delivery info
+
+```js
+const data = await deliveriesHelper.getInfo(invoiceId);
+```
+
+Handles delivery validation, item tracking, invoice linkage, and automatic PDF generation with public access URLs.
+
+---
+
 
 Use these modules responsibly and ensure proper error handling in your scripts. Only interact with exposed methods as documented above.
 
