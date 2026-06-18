@@ -31,6 +31,29 @@ example:
 
 
 
+### `<bmml-datepicker>`
+> Supported from **v3.1.305** and on.
+
+This element renders a Hebrew (Jewish) calendar datepicker. It binds through `ng-model`, which holds the selected Gregorian date as an ISO `YYYY-MM-DD` string, while the read-only input displays the date in Hebrew.
+
+example:
+```<bmml-datepicker ng-model="$data.due_date"></bmml-datepicker>```
+
+- `ng-model` - the model that holds the selected date as an ISO `YYYY-MM-DD` string (required).
+- `settings` - an optional configuration object. Supported keys:
+    - `israel` (boolean) - use the Israel holiday schedule (single festival day). When `false`, the Diaspora schedule is used. Default: `true`.
+    - `hideHeader` (boolean) - hide the picker header that shows the selected date. Default: `false`.
+    - `color` (string) - an accent color (CSS color) applied to the picker via the `--main-color` CSS variable.
+    - `initDate` (Date | string) - an initial date to seed the picker with when the model is empty.
+
+example with settings:
+```<bmml-datepicker ng-model="$data.due_date" settings="{ israel: false, hideHeader: true, color: '#3b82f6' }"></bmml-datepicker>```
+
+#### Note
+The element ships unstyled (it emits semantic class names only), so the look is controlled by your page/theme styling.
+The companion [`hebrewDate` filter](../filters/README.md) can be used to display the selected date elsewhere, for example: `{{ $data.due_date | hebrewDate }}`.
+
+
 ### `<bmml-data-src>`
 This element is used to embed a data source in the page. The data source is identified by the following attributes:
 

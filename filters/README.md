@@ -29,3 +29,37 @@ Or with a different format:
 ```
 
 Read more about the [Format tokens](https://momentjs.com/docs/#/displaying/format/) for the format options.
+
+## Hebrew Date
+> Supported from **v3.1.305** and on.
+
+Converts a date into a Hebrew (Jewish) calendar date string.
+The input can be a `Date`, an ISO date string (e.g. `'2025-03-30'`) or a timestamp.
+An invalid or empty input returns an empty string.
+
+By default the day and year are rendered as Hebrew numerals (gematria), e.g. `א׳ ניסן תשפ״ה`:
+```html
+{{ '2025-03-30' | hebrewDate }}
+```
+
+You can pass an options object to control the output:
+```html
+{{ record.due_date | hebrewDate: { dayName: true } }}
+```
+
+### Options
+- `dayName` (boolean) - prefix the Hebrew weekday name (e.g. `ראשון`). Default: `false`.
+- `day` (boolean) - include the day of the month. Default: `true`.
+- `month` (boolean) - include the month name. Default: `true`.
+- `year` (boolean) - include the year. Default: `true`.
+- `numerals` (boolean) - use Hebrew numerals (gematria). When `false`, arabic digits are used. Default: `true`.
+- `separator` (string) - the token separator. Default: `' '` (a single space).
+
+### Examples
+```html
+{{ '2025-03-30' | hebrewDate }}                       <!-- א׳ ניסן תשפ״ה -->
+{{ '2025-03-30' | hebrewDate: { dayName: true } }}    <!-- ראשון א׳ ניסן תשפ״ה -->
+{{ '2025-03-30' | hebrewDate: { numerals: false } }}  <!-- 1 ניסן 5785 -->
+{{ '2025-03-30' | hebrewDate: { year: false } }}      <!-- א׳ ניסן -->
+{{ '2025-03-30' | hebrewDate: { separator: '-' } }}   <!-- א׳-ניסן-תשפ״ה -->
+```
