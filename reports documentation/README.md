@@ -6,6 +6,7 @@ The **settings box** allows customizing the columns in your reports and configur
 
 - **`clms`** — array of column definitions.
 - **`actions`** — configuration object that defines the view the menu is taken from and menus.
+- **`csv`** - download configuration
 
 ### Column Object Properties
 
@@ -68,7 +69,65 @@ The `actions` setting controls which action menus are available for the report f
     }
   ]
 }
+
 ```
+## `csv` Attribute
+
+The csv attribute configures the downloaded CSV file. 
+
+### Actions Object Properties
+| Property | Type | Description |
+|----------|------|-------------|
+| `file_name` | `string` | The name of the file once downloaded. this is optional - will use default name if not set |
+
+
+### Available Dynamic Values
+
+The `file_name` supports dynamic placeholders using `${...}` syntax.
+
+#### `NOW`
+
+Use `${NOW}` to insert the current date.
+
+```json
+{
+  "csv": {
+    "file_name": "P_${NOW}_DAF"
+  }
+}
+```
+
+Example output:
+
+```text
+P_2026-06-18_DAF.csv
+```
+
+#### `DATETIME`
+
+Use `${DATETIME}` to insert the current date and time.
+
+```json
+{
+  "csv": {
+    "file_name": "P_${DATETIME}_DAF"
+  }
+}
+```
+
+Example output:
+
+```text
+P_2026-06-18_14_30_22_DAF.csv
+```
+
+`DATETIME` is useful when the same report may be downloaded multiple times in one day and each file should have a unique name.
+
+### Using Report Params in the File Name
+
+Report params can also be used in the file name. Use the param’s `internal_name` inside `${...}`.
+
+
 # Reports Params
 ---
 
