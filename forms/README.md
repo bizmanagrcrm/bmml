@@ -82,5 +82,6 @@ The following query parameters can be sent along:
 * customer: the customer to connect the cc charge to
 * invoice: the invoice to apply the charge to
 * hide_payment_gateway: set to 'true' to hide the 'show more options'. Will hide the payment gateway so that it cant be changed
+* card_holder_name: Name that will be sent to cardknox as the cardholder. If not set, it will try to send the customer name as the cardholder. If a customer is also not set, it will stay empty. optional field and only works for cardknox
 
 `Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1`
