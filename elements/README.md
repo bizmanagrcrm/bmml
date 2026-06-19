@@ -31,13 +31,13 @@ example:
 
 
 
-### `<bmml-datepicker>`
+### `<bmml-heb-datepicker>`
 > Supported from **v3.1.305** and on.
 
 This element renders a Hebrew (Jewish) calendar datepicker. It binds through `ng-model`, which holds the selected Gregorian date as an ISO `YYYY-MM-DD` string, while the read-only input displays the date in Hebrew.
 
 example:
-```<bmml-datepicker ng-model="$data.due_date"></bmml-datepicker>```
+```<bmml-heb-datepicker ng-model="$data.due_date"></bmml-heb-datepicker>```
 
 - `ng-model` - the model that holds the selected date as an ISO `YYYY-MM-DD` string (required).
 - `settings` - an optional configuration object. Supported keys:
@@ -47,7 +47,7 @@ example:
     - `initDate` (Date | string) - an initial date to seed the picker with when the model is empty.
 
 example with settings:
-```<bmml-datepicker ng-model="$data.due_date" settings="{ israel: false, hideHeader: true, color: '#3b82f6' }"></bmml-datepicker>```
+```<bmml-heb-datepicker ng-model="$data.due_date" settings="{ israel: false, hideHeader: true, color: '#3b82f6' }"></bmml-heb-datepicker>```
 
 #### Note
 The element ships unstyled (it emits semantic class names only), so the look is controlled by your page/theme styling.
