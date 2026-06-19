@@ -53,15 +53,17 @@ You can pass an options object to control the output:
 - `month` (boolean) - include the month name. Default: `true`.
 - `year` (boolean) - include the year. Default: `true`.
 - `numerals` (boolean) - use Hebrew numerals (gematria). When `false`, arabic digits are used. Default: `true`.
+- `gershayim` (boolean) - show geresh/gershayim punctuation on the day and year, e.g. `י״א` / `תשפ״ה` instead of `יא` / `תשפה`. Default: `false`.
 - `separator` (string) - the token separator. Default: `' '` (a single space).
 
 ### Examples
 ```html
-{{ '2025-03-30' | hebrewDate }}                       <!-- א׳ ניסן תשפ״ה -->
-{{ '2025-03-30' | hebrewDate: { dayName: true } }}    <!-- ראשון א׳ ניסן תשפ״ה -->
+{{ '2025-03-30' | hebrewDate }}                       <!-- א ניסן תשפה -->
+{{ '2025-03-30' | hebrewDate: { gershayim: true } }}  <!-- א׳ ניסן תשפ״ה -->
+{{ '2025-03-30' | hebrewDate: { dayName: true } }}    <!-- ראשון א ניסן תשפה -->
 {{ '2025-03-30' | hebrewDate: { numerals: false } }}  <!-- 1 ניסן 5785 -->
-{{ '2025-03-30' | hebrewDate: { year: false } }}      <!-- א׳ ניסן -->
-{{ '2025-03-30' | hebrewDate: { separator: '-' } }}   <!-- א׳-ניסן-תשפ״ה -->
+{{ '2025-03-30' | hebrewDate: { year: false } }}      <!-- א ניסן -->
+{{ '2025-03-30' | hebrewDate: { separator: '-' } }}   <!-- א-ניסן-תשפה -->
 ```
 ## Encode URI component filter
 Used to encode a part of a url.
