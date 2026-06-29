@@ -83,5 +83,6 @@ The following query parameters can be sent along:
 * invoice: the invoice to apply the charge to
 * hide_payment_gateway: set to 'true' to hide the 'show more options'. Will hide the payment gateway so that it cant be changed
 * card_holder_name: Name that will be sent to cardknox as the cardholder. If not set, it will try to send the customer name as the cardholder. If a customer is also not set, it will stay empty. optional field and only works for cardknox
-
-`Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1`
+* metadata_fieldname: metadata that is sent to STRIPE. if set, the fieldname will be the name of the metadata and the value will be the value. Can be used to send any information along to stripe. Optional field and only works for stripe.
+  
+`Example: /#/payments/charge-cc?pre_data_amount={{pledge_amount}}&customer={{cust_id}}&gateway=1&metadata_email=ng@jointtechs.com&metadata_name=Nechama`
